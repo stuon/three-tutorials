@@ -1,5 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
+import Stats from 'three/addons/libs/stats.module.js'
 
 const scene = new THREE.Scene()
 
@@ -22,6 +23,10 @@ const material = new THREE.MeshNormalMaterial({ wireframe: true })
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
 
+const stats = new Stats()
+
+document.body.appendChild(stats.dom)
+
 function animate() {
   requestAnimationFrame(animate)
 
@@ -29,6 +34,8 @@ function animate() {
   cube.rotation.y += 0.01
 
   renderer.render(scene, camera)
+
+  stats.update()
 }
 
 animate()
